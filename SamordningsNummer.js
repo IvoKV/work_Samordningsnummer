@@ -1,5 +1,5 @@
-const samordningsnummer1 = "20000212-1234";
-const samordningsnummer2 = "20000202-1234";
+const samordningsnummer1 = "20000012-1234";
+const samordningsnummer2 = "20001202-1234";
 
 const PATTERN = /(\d{6}|\d{8})-?\d{4}/;
 const DEFAULT_CENTURY = "19";
@@ -69,8 +69,13 @@ function samordningsNummerHasValidDate(number){
     else {
         date = number.substring(0, 8);
     }
-    let x = parseInt(date.substring(6, 8)) - 6;
-    date = date.substring(0, 6) + x + date.substring(7);
+    // månad: 01-12
+    let month = date.substring(4, 6);
+    if(!parseInt(month) > 0 || !parseInt(month) < 13)
+        return false;
+
+    // dag: 31-91; ingen kontroll om månad får ha 28, 29, 30 eller 31 dagar
+    let date = new Date(Date.UTC(2020,11, ))
 
 }
 
